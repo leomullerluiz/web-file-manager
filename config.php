@@ -11,10 +11,19 @@ define('FM_APP_ROOT', __DIR__);
 define('FM_CLIENTS_DIR', __DIR__ . DIRECTORY_SEPARATOR . 'clients_files');
 
 // --- DATABASE CONFIGURATION ---
-define('DB_HOST', 'localhost:3306');
-define('DB_NAME', 'file_manager');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+// Load .env file if present (set by CI/CD deployment)
+if (file_exists(__DIR__ . '/.env')) {
+    $env_vars = parse_ini_file(__DIR__ . '/.env');
+    foreach ($env_vars as $env_key => $env_value) {
+        putenv("$env_key=$env_value");
+    }
+    unset($env_vars, $env_key, $env_value);
+}
+
+define('DB_HOST', getenv('DB_HOST') !== false ? getenv('DB_HOST') : 'localhost:3306');
+define('DB_NAME', getenv('DB_NAME') !== false ? getenv('DB_NAME') : 'file_manager');
+define('DB_USER', getenv('DB_USER') !== false ? getenv('DB_USER') : 'root');
+define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : '');
 define('DB_CHARSET', 'utf8mb4');
 
 // --- APPLICATION CONFIGURATION ---

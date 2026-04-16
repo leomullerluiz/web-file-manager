@@ -1,0 +1,5 @@
+# Environment file with secrets - never commit this
+.env
+
+# Client uploaded files
+clients_files/
