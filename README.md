@@ -219,6 +219,3 @@ Runtime UI preferences (theme, language, show hidden files, column visibility, e
 
 ---
 
-## License
-
-See [LICENSE](LICENSE).
